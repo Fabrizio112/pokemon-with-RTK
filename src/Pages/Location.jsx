@@ -6,7 +6,7 @@ import { useGetLocationsQuery } from "../store/api/pokemonApi";
 function ViewLocation() {
     const [location, setLocation] = useState("")
     const navigate = useNavigate()
-    const { data: locationData } = useGetLocationsQuery()
+    const { data: locationData, isFetching } = useGetLocationsQuery()
 
     useEffect(() => {
         if (locationData) {
@@ -35,6 +35,7 @@ function ViewLocation() {
             </div>
             <main className="location-grid">
                 {location?.results?.map(location => <LocationCard key={location.name} location={location} />)}
+                {isFetching && <h2>Loading ...</h2>}
             </main>
 
         </section>

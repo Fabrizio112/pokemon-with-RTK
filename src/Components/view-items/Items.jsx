@@ -6,7 +6,7 @@ import { getThroughtUrl } from "../../helpers/functionFetch";
 
 function Items() {
     const [items, setItems] = useState("")
-    const { data: itemsData } = useGetItemsQuery()
+    const { data: itemsData, isFetching } = useGetItemsQuery()
     const navigate = useNavigate()
     useEffect(() => {
         if (itemsData) {
@@ -35,6 +35,7 @@ function Items() {
             </div>
             <main className="items-grid">
                 {items && items.results.map(item => <ItemCard key={item.name} item={item} />)}
+                {isFetching && <h2>Loading ...</h2>}
             </main>
 
         </section></>);
